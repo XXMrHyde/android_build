@@ -164,8 +164,9 @@ $(info The correct version is: Java SE 1.6.)
 $(info $(space))
 $(info Please follow the machine setup instructions at)
 $(info $(space)$(space)$(space)$(space)https://source.android.com/source/download.html)
+$(info $(space))
+$(info Continue at your own peril!)
 $(info ************************************************************)
-$(error stop)
 endif
 
 # Check for the correct version of javac
