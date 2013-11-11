@@ -1338,8 +1338,14 @@ $(INTERNAL_OTA_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE) $(DISTTOOLS)
 	   -k $(KEY_CERT_PAIR) \
 	   $(BUILT_TARGET_FILES_PACKAGE) $@
 
-.PHONY: otapackage
+DK_TARGET_PACKAGE := $(PRODUCT_OUT)/darkkat-$(name).zip
+
+.PHONY: otapackage bacon
 otapackage: $(INTERNAL_OTA_PACKAGE_TARGET)
+bacon: otapackage
+  $(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(DK_TARGET_PACKAGE)
+  $(hide) $(MD5SUM) $(CUSTOM_TARGET_PACKAGE) > $(DK_TARGET_PACKAGE).md5sum
+  @echo -e ${PRT_CPL}"Package complete: $(DK_TARGET_PACKAGE)"${CL_RST}
 
 # -----------------------------------------------------------------
 # The update package
