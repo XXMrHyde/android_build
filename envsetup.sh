@@ -60,10 +60,13 @@ function check_product()
 
     if (echo -n $1 | grep -q -e "^dk_") ; then
         DARKKAT_BUILD=$(echo -n $1 | sed -e 's/^dk_//g')
+        HIDE_MAKEFILE_INCLUDES=y
     else
         DARKKAT_BUILD=
+        HIDE_MAKEFILE_INCLUDES=n
     fi
     export DARKKAT_BUILD
+    export HIDE_MAKEFILE_INCLUDES
 
     CALLED_FROM_SETUP=true BUILD_SYSTEM=build/core \
         TARGET_PRODUCT=$1 \
