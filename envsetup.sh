@@ -476,6 +476,11 @@ return $?
 function breakfast()
 {
     target=$1
+    local type=$2
+    if [ -z "$type" ]; then
+        type="UNOFFICIAL"
+    fi
+    export DK_RELEASE_TYPE=$type
     CUSTOM_DEVICES_ONLY="true"
     unset LUNCH_MENU_CHOICES
     add_lunch_combo full-eng
